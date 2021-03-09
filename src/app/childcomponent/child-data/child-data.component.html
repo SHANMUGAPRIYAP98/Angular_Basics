@@ -1,0 +1,19 @@
+<html>
+    <head><title>Course Data</title></head>
+    <body>
+        <fieldset>
+            <legend>Student Course Data</legend>
+            <table border="1">
+                <tr><th>Register No</th><th>Student Name</th><th>Department</th><th>Course Code</th><th>Course Name</th><th>Course Dept</th></tr>
+                
+                <tr *ngFor="let c of coudata">
+                    <td>{{c.regNo}}</td>
+                    <td>{{c.studName}}</td>
+                    <td>{{c.dept}}</td>
+                    <td>{{c.courseCode}}</td>
+                    <td>{{c.courName}}</td>
+                 <td>{{c.deptName}}</td></tr>
+            </table>
+        </fieldset>
+    </body>
+</html>

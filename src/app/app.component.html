@@ -1,0 +1,131 @@
+<html>
+  <head><title>One-Way Data Binding</title></head>
+  <body bgcolor="skyblue">
+    <div>
+      <h1 align="center">{{title}}</h1>
+      <fieldset>
+      
+        <legend align="center" >
+          <img [src]="imgUrl" align="center" width="100px" height="100px"/> Inter-Polation Sign Up Details
+        </legend>
+        <table>
+          <tr><td>Full Name : </td><td><input type="text" [value]="name"></td></tr>
+          <tr><td>Email-Id</td><td><input type="email" [value]="mail" /></td>
+          </tr>
+          <tr><td>Password :</td><td><input type="password" [value]="pwd"/></td>
+          </tr>
+          <tr><td>Phone Number : </td><td><input type="text" [value]="phno"></td></tr>
+          <tr><td>Select Country</td><td><select >
+            <option value="Select an Option">Select an Option</option>
+            <option value="USA">USA</option>
+            <option value="counName">INDIA</option>
+            <option value="CANADA">CANADA</option>
+            <option value="JAPAN">JAPAN</option>
+            <option value="GERMAN">GERMAN</option>
+            <option value="CHINA">CHINA</option>
+            <option value="PAKISTAN">PAKISTAN</option>
+          </select></td></tr>
+          <tr><td colspan="2"><input type="submit" value="Sign Up"></td></tr>
+          </table>
+      </fieldset>
+    </div>
+    
+ <div>
+  <fieldset>
+    <legend>Pizza Form (Two-Way Data Binding)</legend>
+    <div>
+    <img [src]="pizImg1"  width="200px" height="200px" />
+    </div>
+    <table >
+      <tr><td>Customer Name </td><td><input type="text" [(ngModel)]="custName" /></td><td>{{custName}}</td></tr>
+      <tr><td>Phone Number  </td><td><input type="text" [(ngModel)]="phNumber"></td><td>{{phNumber}}</td></tr>
+      <tr><td>Select Pizza Size </td><td><input type="radio" name="rbut" value="Big" [(ngModel)]="rVal">Big
+        <input type="radio" name="rbut" value="Medium" [(ngModel)]="rVal">Medium
+        <input type="radio" name="rbut" value="Small" [(ngModel)]="rVal">Small</td><td>{{rVal}}</td></tr>
+        <tr><td>Select Crust Type </td><td><select [(ngModel)]="crustVal">
+          <option *ngFor="let crust of crustType" [value]="crust">{{crust}}</option>
+        </select></td><td>{{crustVal}}</td></tr>
+        <tr><td>Select Filler</td><td><input type="checkbox" value="Sausages" name="cb1" >Sausages</td><td>
+          <input type="checkbox" value="Cheese" name="cb2" >Cheese</td><td><input type="checkbox" value="Mushroom" name="cb3">Mushroom</td>
+          <td><input type="checkbox" value="Paneer" name="cb4" >Paneer</td></tr>
+          <tr><td>Comments </td><td><textarea name="ta">{{comm}}</textarea></td><td>{{comm}}</td></tr>
+          <tr><td><input type="submit" value="Send"></td><td><input type="submit" value="Reset"></td></tr>
+    </table>
+  </fieldset>
+
+
+</div>
+
+<div>
+  <table border="1">
+    <tr ><td colspan="2" align="center">Student Details</td></tr>
+    <tr><td>Enter Roll Number </td><td><input type="text" (input)="onDataEntry($event)"></td><td>{{rollno}}</td></tr>
+    <tr><td>Enter Student Name </td><td><input type="text" (keyup.enter)="onKeyEnter($event)"></td><td>{{stuName}}</td></tr>
+    <tr><td>Review on Ethiraj College </td><td><textarea (keyup.Shift.A)="onModifierKeyEntry($event)"></textarea></td><td>{{review}}</td></tr>
+    <tr><td colspan="2"><input type="submit" value="submit" (click)="onButtonClick()"/></td></tr>
+  </table>
+</div>
+    <div>
+      <fieldset>
+        <legend>Webinar Feedback Form</legend>
+        <table border="1">
+          <tr><td>Full Name </td><td><input type="text"  #fullName/></td></tr>
+          <tr><td>Suggestions to Improve </td><td><textarea #comment></textarea></td></tr>
+          <tr><td>Review </td><td>
+            <select #reviewOpt>
+              <option value="Select Option">Select Option</option>
+              <option *ngFor="let opt of reviewOptions">{{opt}}</option>
+            </select>
+          </td></tr>
+          <tr><td colspan="2" align="center"><input type="submit" value="submit" (click)="onSubmitButt(fullName.value,comment.value,reviewOpt.value)"></td></tr>
+        </table>
+      </fieldset>
+    </div>
+   <!--Student Details Parent-Child Interaction-->
+   <div>
+  <fieldset>
+    <legend align="center" style="font-weight:bold;font-family: 'Franklin Gothic Medium';">Student Course Selection</legend>
+  <table border="1">
+    <tr><td>Register Number</td><td><input type="text"  #regno></td></tr>
+    <tr><td>Student Name</td><td><input type="text" #sname></td></tr>
+    <tr><td>Department Name </td><td><select #dname>
+      <option>Select Department</option>
+      <option *ngFor="let d of dept" >{{d}}</option>
+    </select></td></tr>
+    <tr><td>Course Code</td><td><input type="text" #ccode></td></tr>
+    <tr><td>Course Name</td><td><select #cname>
+      <option>Select Course</option>
+      <option *ngFor="let c of couName" >{{c}}</option>
+    </select></td></tr>
+    <tr><td>Department</td><td><select #sdept>
+      <option>Select Department</option>
+      <option *ngFor="let d of dept" >{{d}}</option>
+    </select></td>
+  </tr>
+  <tr><td><input type="submit" value="register" align="center" (click)="onSubmitClick(regno.value,sname.value,dname.value,ccode.value,cname.value,sdept.value)" ></td></tr>
+  </table>
+  </fieldset>
+</div>
+<div>
+  <app-child-data [coudata]="course"></app-child-data>
+</div>
+
+
+
+
+
+<div>
+  <fieldset>
+    <legend align="center" style="font-weight:b;">Currency Conversion From Rupee To USD and Vice-Versa</legend>
+    <table>
+      <tr><td>Enter Indian Rupees (Rs) </td><td><input type="number" [(ngModel)]="rupee"/></td><td><input type="submit" value="USD Conversion" (click)="onUSDConv()"></td><td>{{usdVal}} $</td></tr>
+      <tr><td>Enter USD ($) </td><td><input type="number" [(ngModel)]="dollar"/></td><td><input type="submit" value="Rupee Conversion" (click)="onRupConv()"></td><td>{{rupVal}} RS</td></tr>
+    </table>
+
+  </fieldset>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+  </body>
+</html>
